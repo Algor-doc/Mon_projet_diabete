@@ -5,3 +5,4 @@ numpy
 xgboost
 joblib
 matplotlib
+plotly.express
