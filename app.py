@@ -38,19 +38,39 @@ st.title("🩺 Application de prédiction du diabète")
 st.write("Cette application interactive utilise le Machine Learning pour estimer le risque de diabète à partir de données médicales.")
 
 # Sidebar avec paramètres
-st.sidebar.header("⚙️ Paramètres de saisie")
-age = st.sidebar.slider("Âge", min_value=1, max_value=120, value=30)
+age = st.sidebar.slider("Âge", 1, 120, 30)
+gender = st.sidebar.selectbox("Sexe", ["Male", "Female"])
 polyurie = st.sidebar.selectbox("Polyurie", ["Yes", "No"])
 polydipsie = st.sidebar.selectbox("Polydipsie", ["Yes", "No"])
+perte_poids = st.sidebar.selectbox("Perte de poids", ["Yes", "No"])
+fatigue = st.sidebar.selectbox("Fatigue", ["Yes", "No"])
+vision = st.sidebar.selectbox("Vision trouble", ["Yes", "No"])
+itching = st.sidebar.selectbox("Démangeaisons", ["Yes", "No"])
+irritabilite = st.sidebar.selectbox("Irritabilité", ["Yes", "No"])
+cicatrisation = st.sidebar.selectbox("Retard de cicatrisation", ["Yes", "No"])
+paresthesie = st.sidebar.selectbox("Paresthésie", ["Yes", "No"])
 obesite = st.sidebar.selectbox("Obésité", ["Yes", "No"])
-fatigue = st.sidebar.checkbox("Fatigue persistante")
-vision = st.sidebar.checkbox("Vision trouble")
+hypertension = st.sidebar.selectbox("Hypertension", ["Yes", "No"])
 
-# Mapping des réponses
-mapping = {"Yes": 1, "No": 0}
-features = np.array([[age, mapping[polyurie], mapping[polydipsie], mapping[obesite],
-                      1 if fatigue else 0, 1 if vision else 0]])
+# Encodage Yes/No → 1/0 et Male/Female → 1/0
+mapping = {"Yes": 1, "No": 0, "Male": 1, "Female": 0}
 
+# Créer l'entrée pour le modèle (⚠️ respecter l'ordre des colonnes d'entraînement)
+features = np.array([[
+    age,
+    mapping[gender],
+    mapping[polyurie],
+    mapping[polydipsie],
+    mapping[perte_poids],
+    mapping[fatigue],
+    mapping[vision],
+    mapping[itching],
+    mapping[irritabilite],
+    mapping[cicatrisation],
+    mapping[paresthesie],
+    mapping[obesite],
+    mapping[hypertension]
+]])
 # Onglets
 tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire", "📂 Import CSV", "ℹ️ Explication"])
 
