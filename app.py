@@ -1,6 +1,8 @@
 import streamlit as st
 import joblib
 import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 st.set_page_config(
     page_title="Prédiction du diabète",
     page_icon="🩺",
@@ -32,7 +34,6 @@ if st.button("Prédire"):
         st.success("✅ Pas de risque détecté")
 
 # Section après la prédiction :
-import matplotlib.pyplot as plt
 
 st.subheader("📊 Répartition simulée")
 fig, ax = plt.subplots()
@@ -41,7 +42,6 @@ st.pyplot(fig)
 
 
 #Bouton pour télécharger les résultats
-import pandas as pd
 
 if st.button("📥 Télécharger le rapport"):
     result = pd.DataFrame(features, columns=["Âge","Polyurie","Polydipsie","Obésité"])
