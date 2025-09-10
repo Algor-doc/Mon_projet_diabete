@@ -35,6 +35,10 @@ model = joblib.load("model_diabetes.pkl")
 
 # Titre principal
 st.title("🩺 Application de prédiction du diabète")
+st.image(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Diabetes_logo.svg/1200px-Diabetes_logo.svg.png",
+    width=150
+)
 st.write("Cette application interactive utilise le Machine Learning pour estimer le risque de diabète à partir de données médicales.")
 
 # Sidebar avec paramètres
