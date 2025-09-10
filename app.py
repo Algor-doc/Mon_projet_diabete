@@ -34,7 +34,6 @@ if st.button("Prédire"):
         st.success("✅ Pas de risque détecté")
 
 # Section après la prédiction :
-
 st.subheader("📊 Répartition simulée")
 fig, ax = plt.subplots()
 ax.bar(["Pas de diabète", "Diabète"], [1-probas, probas])
@@ -42,7 +41,6 @@ st.pyplot(fig)
 
 
 #Bouton pour télécharger les résultats
-
 if st.button("📥 Télécharger le rapport"):
     result = pd.DataFrame(features, columns=["Âge","Polyurie","Polydipsie","Obésité"])
     result["Probabilité diabète"] = [f"{probas*100:.2f}%"]
