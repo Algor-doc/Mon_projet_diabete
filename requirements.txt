@@ -1,7 +1,5 @@
 xgboost
 matplotlib
-plotly.express
-plotly.graph_objects
 streamlit==1.38.0
 joblib==1.4.2
 numpy==1.26.4
