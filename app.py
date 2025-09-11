@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
+import plotly.graph_objects as go
 
 # Fonction pour ajouter une image de fond
 def add_bg_from_url():
@@ -88,25 +89,33 @@ tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire
 with tab1:
     st.subheader("Résultat de la prédiction")
 
-    if st.button("🔍 Lancer la prédiction"):
-        prediction = model.predict(features)
-        probas = model.predict_proba(features)[0][1]
+    if st.button("🔍 Prédire"):
+    prediction = model.predict(features)
+    proba = model.predict_proba(features)[0][1]  # probabilité d'avoir le diabète
 
-        st.metric(label="Probabilité de diabète", value=f"{probas*100:.2f}%")
+    st.metric(label="Probabilité de diabète", value=f"{proba*100:.2f}%")
 
-        # Messages conditionnels
-        if probas > 0.7:
-            st.warning("⚠️ Risque très élevé – consultez un médecin rapidement.")
-        elif probas > 0.4:
-            st.info("ℹ️ Risque modéré – un suivi médical est recommandé.")
-        else:
-            st.success("✅ Pas de risque détecté.")
+    if prediction[0] == 1:
+        st.error("⚠️ Risque élevé de diabète")
+    else:
+        st.success("✅ Pas de risque détecté")
 
-        # Graphique visuel
-        fig, ax = plt.subplots()
-        ax.bar(["Pas de diabète", "Diabète"], [1-probas, probas], color=["green", "red"])
-        st.pyplot(fig)
+    # Graphe interactif Plotly
+    fig = go.Figure(go.Bar(
+        x=["Pas de diabète", "Diabète"],
+        y=[1-proba, proba],
+        marker_color=["green", "red"],
+        text=[f"{(1-proba)*100:.1f}%", f"{proba*100:.1f}%"],
+        textposition="auto"
+    ))
 
+    fig.update_layout(
+        title="Résultat de la prédiction",
+        yaxis=dict(title="Probabilité"),
+        xaxis=dict(title="Classe")
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
 
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
