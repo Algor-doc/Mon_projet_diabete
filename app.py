@@ -86,6 +86,7 @@ features = np.array([[
 tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire", "📂 Import CSV", "ℹ️ Explication"])
 
 # --------- Onglet 1 : Prédiction ---------
+import matplotlib.pyplot as plt
 
 if st.button("🔍 Lancer la prédiction"):
     prediction = model.predict(features)
@@ -101,30 +102,28 @@ if st.button("🔍 Lancer la prédiction"):
     # === Graphe simple avec matplotlib ===
     labels = ["Pas de diabète", "Diabète"]
     values = [1 - proba, proba]
-    colors = ["green", "red"]    # choisir n'importe quelle couleur
-# tu peux changer la taille (width, height)
-  fig, ax = plt.subplots(figsize=(6,4))  
-bars = ax.bar(labels, values, color=colors)
+    colors = ["green", "red"]
 
-# Ajouter les pourcentages au-dessus des barres
-for bar, val in zip(bars, values):
-    ax.text(
-        bar.get_x() + bar.get_width()/2,
-        bar.get_height(),
-        f"{val*100:.1f}%",
-        ha="center",
-        va="bottom",
-        fontsize=12,
-        fontweight="bold"
-    )
+    fig, ax = plt.subplots()
+    bars = ax.bar(labels, values, color=colors)
 
-ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
-ax.set_ylabel("Probabilité", fontsize=12)
+    # Ajouter les pourcentages au-dessus des barres
+    for bar, val in zip(bars, values):
+        ax.text(
+            bar.get_x() + bar.get_width()/2,
+            bar.get_height(),
+            f"{val*100:.1f}%",
+            ha="center",
+            va="bottom",
+            fontsize=12,
+            fontweight="bold"
+        )
 
-# Titre avec espace en haut
-ax.set_title("Résultat de la prédiction", fontsize=14, fontweight="bold", pad=20)
+    ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
+    ax.set_ylabel("Probabilité")
+    ax.set_title("Résultat de la prédiction")
 
-st.pyplot(fig)
+    st.pyplot(fig)
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
     st.subheader("Analyse des données (exemple sur dataset)")
