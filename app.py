@@ -56,7 +56,7 @@ irritabilite = st.sidebar.selectbox("Irritabilité", ["Yes", "No"])
 cicatrisation = st.sidebar.selectbox("Retard de cicatrisation", ["Yes", "No"])
 paresthesie = st.sidebar.selectbox("Paresthésie", ["Yes", "No"])
 raideur_musculaire = st.sidebar.selectbox("Raideur_musculaire", ["Yes", "No"])
-Alopécie = st.sidebar.selectbox("Alopécie", ["Yes", "No"])
+Alopecia = st.sidebar.selectbox("Alopécie", ["Yes", "No"])
 obesite = st.sidebar.selectbox("Obésité", ["Yes", "No"])
 hypertension = st.sidebar.selectbox("Hypertension", ["Yes", "No"])
 
