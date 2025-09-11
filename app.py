@@ -102,8 +102,8 @@ if st.button("🔍 Lancer la prédiction"):
     labels = ["Pas de diabète", "Diabète"]
     values = [1 - proba, proba]
     colors = ["green", "red"]    # choisir n'importe quelle couleur
-
-  fig, ax = plt.subplots(figsize=(6, 4))  # tu peux changer la taille (width, height)
+# tu peux changer la taille (width, height)
+  fig, ax = plt.subplots(figsize=(6, 4))  
 bars = ax.bar(labels, values, color=colors)
 
 # Ajouter les pourcentages au-dessus des barres
