@@ -125,7 +125,6 @@ ax.set_ylabel("Probabilité", fontsize=12)
 ax.set_title("Résultat de la prédiction", fontsize=14, fontweight="bold", pad=20)
 
 st.pyplot(fig)
-
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
     st.subheader("Analyse des données (exemple sur dataset)")
