@@ -86,27 +86,45 @@ features = np.array([[
 tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire", "📂 Import CSV", "ℹ️ Explication"])
 
 # --------- Onglet 1 : Prédiction ---------
-with tab1:
-    st.subheader("Résultat de la prédiction")
+import matplotlib.pyplot as plt
 
-    if st.button("🔍 Lancer la prédiction"):
-        prediction = model.predict(features)
-        probas = model.predict_proba(features)[0][1]
+if st.button("🔍 Lancer la prédiction"):
+    prediction = model.predict(features)
+    proba = model.predict_proba(features)[0][1]  # probabilité diabète
 
-        st.metric(label="Probabilité de diabète", value=f"{probas*100:.2f}%")
+    st.metric(label="Probabilité de diabète", value=f"{proba*100:.2f}%")
 
-        # Messages conditionnels
-        if probas > 0.7:
-            st.warning("⚠️ Risque très élevé – consultez un médecin rapidement.")
-        elif probas > 0.4:
-            st.info("ℹ️ Risque modéré – un suivi médical est recommandé.")
-        else:
-            st.success("✅ Pas de risque détecté.")
+    if prediction[0] == 1:
+        st.error("⚠️ Risque élevé de diabète détecté.")
+    else:
+        st.success("✅ Aucun risque de diabète détecté.")
 
-        # Graphique visuel
-        fig, ax = plt.subplots()
-        ax.bar(["Pas de diabète", "Diabète"], [1-probas, probas], color=["green", "red"])
-        st.pyplot(fig)
+    # === Graphe simple avec matplotlib ===
+    labels = ["Pas de diabète", "Diabète"]
+    values = [1 - proba, proba]
+    colors = ["green", "red"]
+
+    fig, ax = plt.subplots()
+    bars = ax.bar(labels, values, color=colors)
+
+    # Ajouter les pourcentages au-dessus des barres
+    for bar, val in zip(bars, values):
+        ax.text(
+            bar.get_x() + bar.get_width()/2,
+            bar.get_height(),
+            f"{val*100:.1f}%",
+            ha="center",
+            va="bottom",
+            fontsize=12,
+            fontweight="bold"
+        )
+
+    ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
+    ax.set_ylabel("Probabilité")
+    ax.set_title("Résultat de la prédiction")
+
+    st.pyplot(fig)
+
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
     st.subheader("Analyse des données (exemple sur dataset)")
