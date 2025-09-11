@@ -101,9 +101,9 @@ if st.button("🔍 Lancer la prédiction"):
     # === Graphe simple avec matplotlib ===
     labels = ["Pas de diabète", "Diabète"]
     values = [1 - proba, proba]
-    colors = ["green", "red"]
+    colors = ["green", "red"]    #  choisir n'importe quelle couleur
 
-    fig, ax = plt.subplots(figsize=(8, 6))  # tu peux changer la taille (width, height)
+    fig, ax = plt.subplots(figsize=(8, 6))  #  changer la taille (largeur , hauteur )
 bars = ax.bar(labels, values, color=colors)
 
 # Ajouter les pourcentages au-dessus des barres
@@ -119,10 +119,10 @@ for bar, val in zip(bars, values):
     )
 
 ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
-ax.set_ylabel("Probabilité", fontsize=12)
+ax.set_ylabel("Probabilité", fontsize=12, fontweight="bold", pad=20)
 
 # Titre avec espace en haut
-ax.set_title("Résultat de la prédiction", fontsize=14, fontweight="bold", pad=20)
+ax.set_title("Résultat de la prédiction", fontsize=12, fontweight="bold", pad=20)
 
 st.pyplot(fig)
 
