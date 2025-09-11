@@ -107,44 +107,6 @@ with tab1:
         ax.bar(["Pas de diabète", "Diabète"], [1-probas, probas], color=["green", "red"])
         st.pyplot(fig)
 
--------------------------
-    # Graphe interactif (jauge Plotly)
-    # -------------------------
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=proba * 100,
-        title={'text': "Probabilité de diabète (%)"},
-        gauge={
-            'axis': {'range': [0, 100]},
-            'bar': {'color': "red" if prediction[0] == 1 else "green"},
-            'steps': [
-                {'range': [0, 50], 'color': "lightgreen"},
-                {'range': [50, 100], 'color': "pink"}
-            ],
-        }
-    ))
-    st.plotly_chart(fig, use_container_width=True)
-
-    # -------------------------
-    # Rapport téléchargeable
-    # -------------------------
-    result = pd.DataFrame({
-        "Âge": [age],
-        "Polyurie": [polyurie],
-        "Polydipsie": [polydipsie],
-        "Obésité": [obesite],
-        "Fatigue": [fatigue],
-        "Vision trouble": [vision],
-        "Probabilité (%)": [round(proba * 100, 2)],
-        "Résultat": ["Diabétique" if prediction[0] == 1 else "Non diabétique"]
-    })
-
-    st.download_button(
-        "📥 Télécharger le rapport (CSV)",
-        result.to_csv(index=False).encode("utf-8"),
-        "resultat_prediction.csv",
-        "text/csv"
-    )
 
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
