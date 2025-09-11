@@ -104,26 +104,29 @@ if st.button("🔍 Lancer la prédiction"):
     values = [1 - proba, proba]
     colors = ["green", "red"]
 
-    fig, ax = plt.subplots()
-    bars = ax.bar(labels, values, color=colors)
+    fig, ax = plt.subplots(figsize=(6, 4))  # tu peux changer la taille (width, height)
+bars = ax.bar(labels, values, color=colors)
 
-    # Ajouter les pourcentages au-dessus des barres
-    for bar, val in zip(bars, values):
-        ax.text(
-            bar.get_x() + bar.get_width()/2,
-            bar.get_height(),
-            f"{val*100:.1f}%",
-            ha="center",
-            va="bottom",
-            fontsize=12,
-            fontweight="bold"
-        )
+# Ajouter les pourcentages au-dessus des barres
+for bar, val in zip(bars, values):
+    ax.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height(),
+        f"{val*100:.1f}%",
+        ha="center",
+        va="bottom",
+        fontsize=12,
+        fontweight="bold"
+    )
 
-    ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
-    ax.set_ylabel("Probabilité")
-    ax.set_title("Résultat de la prédiction")
+ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
+ax.set_ylabel("Probabilité", fontsize=12)
 
-    st.pyplot(fig)
+# Titre avec espace en haut
+ax.set_title("Résultat de la prédiction", fontsize=14, fontweight="bold", pad=20)
+
+st.pyplot(fig)
+
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
     st.subheader("Analyse des données (exemple sur dataset)")
