@@ -89,9 +89,6 @@ tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire
 with tab1:
     st.subheader("Résultat de la prédiction")
 
-  with tab1:
-    st.subheader("Résultat de la prédiction")
-
     if st.button("🔍 Lancer la prédiction"):
         prediction = model.predict(features)
         probas = model.predict_proba(features)[0][1]
