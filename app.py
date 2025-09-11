@@ -102,7 +102,7 @@ if st.button("🔍 Lancer la prédiction"):
     values = [1 - proba, proba]
     colors = ["green", "red"]
 
-    fig, ax = plt.subplots(figsize=(4, 2))  # tu peux changer la taille (width, height)
+    fig, ax = plt.subplots(figsize=(8, 6))  # tu peux changer la taille (width, height)
 bars = ax.bar(labels, values, color=colors)
 
 # Ajouter les pourcentages au-dessus des barres
