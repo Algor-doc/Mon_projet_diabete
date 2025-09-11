@@ -91,9 +91,10 @@ if st.button("🔍 Lancer la prédiction"):
     proba = model.predict_proba(features)[0][1]  # probabilité diabète
 
     st.metric(label="Probabilité de diabète", value=f"{proba*100:.2f}%")
-
+        # Messages conditionnels
     if prediction[0] == 1:
-        st.error("⚠️ Risque élevé de diabète détecté.")
+        st.error("⚠️ Risque élevé de diabète détecté.
+        Consultez un médecin rapidement")
     else:
         st.success("✅ Aucun risque de diabète détecté.")
 
