@@ -44,21 +44,20 @@ st.write("Cette application interactive utilise le Machine Learning pour estimer
 # Sidebar avec paramètres
 age = st.sidebar.slider("Âge", 1, 120, 30)
 gender = st.sidebar.selectbox("Sexe", ["Male", "Female"])
-polyurie = st.sidebar.selectbox("Polyurie", ["Yes", "No"])
-polydipsie = st.sidebar.selectbox("Polydipsie", ["Yes", "No"])
-perte_poids = st.sidebar.selectbox("Perte de poids", ["Yes", "No"])
-fatigue = st.sidebar.selectbox("Fatigue", ["Yes", "No"])
-polyphagie =  st.sidebar.selectbox("Polyphagie", ["Yes", "No"])
-muguet_génital = st.sidebar.selectbox("muguet génital", ["Yes", "No"])
-vision = st.sidebar.selectbox("Vision trouble", ["Yes", "No"])
+polyuria = st.sidebar.selectbox("Polyurie", ["Yes", "No"])
+polydipsia = st.sidebar.selectbox("Polydipsie", ["Yes", "No"])
+sudden_weight_loss = st.sidebar.selectbox("Perte de poids soudaine", ["Yes", "No"])
+weakness = st.sidebar.selectbox("Faiblesse", ["Yes", "No"])
+polyphagia = st.sidebar.selectbox("Polyphagie (faim excessive)", ["Yes", "No"])
+genital_thrush = st.sidebar.selectbox("Mycose génitale", ["Yes", "No"])
+visual_blurring = st.sidebar.selectbox("Vision trouble", ["Yes", "No"])
 itching = st.sidebar.selectbox("Démangeaisons", ["Yes", "No"])
-irritabilite = st.sidebar.selectbox("Irritabilité", ["Yes", "No"])
-cicatrisation = st.sidebar.selectbox("Retard de cicatrisation", ["Yes", "No"])
-paresthesie = st.sidebar.selectbox("Paresthésie", ["Yes", "No"])
-raideur_musculaire = st.sidebar.selectbox("Raideur_musculaire", ["Yes", "No"])
-alopecia = st.sidebar.selectbox("Alopécie", ["Yes", "No"])
-obesite = st.sidebar.selectbox("Obésité", ["Yes", "No"])
-hypertension = st.sidebar.selectbox("Hypertension", ["Yes", "No"])
+irritability = st.sidebar.selectbox("Irritabilité", ["Yes", "No"])
+delayed_healing = st.sidebar.selectbox("Cicatrisation retardée", ["Yes", "No"])
+partial_paresis = st.sidebar.selectbox("Paresie partielle", ["Yes", "No"])
+muscle_stiffness = st.sidebar.selectbox("Raideur musculaire", ["Yes", "No"])
+alopecia = st.sidebar.selectbox("Alopécie (perte de cheveux)", ["Yes", "No"])
+obesity = st.sidebar.selectbox("Obésité", ["Yes", "No"])
 
 # Encodage Yes/No → 1/0 et Male/Female → 1/0
 mapping = {"Yes": 1, "No": 0, "Male": 1, "Female": 0}
@@ -67,21 +66,20 @@ mapping = {"Yes": 1, "No": 0, "Male": 1, "Female": 0}
 features = np.array([[
     age,
     mapping[gender],
-    mapping[polyurie],
-    mapping[polydipsie],
-    mapping[perte_poids],
-    mapping[fatigue],
-    mapping[polyphagie],
-    mapping[muguet_génital]
-    mapping[vision],
+    mapping[polyuria],
+    mapping[polydipsia],
+    mapping[sudden_weight_loss],
+    mapping[weakness],
+    mapping[polyphagia],
+    mapping[genital_thrush],
+    mapping[visual_blurring],
     mapping[itching],
-    mapping[irritabilite],
-    mapping[cicatrisation],
-    mapping[paresthesie],
-    mapping[raideur_musculaire]
-    mapping[alopecia]
-    mapping[obesite],
-    mapping[hypertension]
+    mapping[irritability],
+    mapping[delayed_healing],
+    mapping[partial_paresis],
+    mapping[muscle_stiffness],
+    mapping[alopecia],
+    mapping[obesity]
 ]])
 # Onglets
 tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire", "📂 Import CSV", "ℹ️ Explication"])
