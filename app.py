@@ -169,6 +169,6 @@ with tab4:
     présente un risque de diabète.  
 
 **Important :** Cette application est un outil pédagogique et ne remplace pas un diagnostic médical professionnel.
-    """⚠️ Elle ne remplace pas un avis médical : elle doit être considérée comme un **outil de sensibilisation et de support**, non comme un diagnostic médical officiel.  
     """)
+
 
