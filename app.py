@@ -100,21 +100,30 @@ with tab1:
     else:
         st.success("✅ Pas de risque détecté")
 
-       # Graphe interactif Plotly
-    fig = go.Figure(go.Bar(
-        x=["Pas de diabète", "Diabète"],
-        y=[1-proba, proba],
-        marker_color=["green", "red"],
-        text=[f"{(1-proba)*100:.1f}%", f"{proba*100:.1f}%"],
-        textposition="auto"
+          # === Graphe interactif Plotly ===
+    labels = ["Pas de diabète", "Diabète"]
+    values = [1 - proba, proba]
+    colors = ["green", "red"]
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+        x=labels,
+        y=values,
+        marker_color=colors,
+        text=[f"{v*100:.1f}%" for v in values],
+        textposition="outside"
     ))
 
     fig.update_layout(
-        title="Résultat interactif de la prédiction",
-        yaxis=dict(title="Probabilité"),
-        xaxis=dict(title="Classe"),
-        bargap=0.5
+        title="Résultat de la prédiction (interactif)",
+        xaxis_title="Classe",
+        yaxis_title="Probabilité",
+        yaxis=dict(range=[0, 1])  # fixe l'échelle de 0 à 1
     )
+
+    st.plotly_chart(fig, use_container_width=True)
+
 
     st.plotly_chart(fig, use_container_width=True)
 
