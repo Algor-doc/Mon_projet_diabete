@@ -86,6 +86,7 @@ features = np.array([[
 tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire", "📂 Import CSV", "ℹ️ Explication"])
 
 # --------- Onglet 1 : Prédiction ---------
+
 if st.button("🔍 Lancer la prédiction"):
     prediction = model.predict(features)
     proba = model.predict_proba(features)[0][1]  # probabilité diabète
@@ -119,8 +120,11 @@ if st.button("🔍 Lancer la prédiction"):
 
     ax.set_ylim(0, 1)  # Échelle de 0 à 1 (100%)
     ax.set_ylabel("Probabilité")
+
+    
     ax.set_title("Résultat de la prédiction")
 
+    
     st.pyplot(fig)
 
 # --------- Onglet 2 : Analyse exploratoire ---------
