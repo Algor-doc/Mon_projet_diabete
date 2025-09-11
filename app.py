@@ -100,27 +100,10 @@ with tab1:
     else:
         st.success("✅ Pas de risque détecté")
 
-         # === Graphe interactif avec Plotly Express ===
-    labels = ["Pas de diabète", "Diabète"]
-    values = [1 - proba, proba]
-
-    fig = px.bar(
-        x=labels,
-        y=values,
-        color=labels,
-        text=[f"{v*100:.1f}%" for v in values],
-        color_discrete_map={"Pas de diabète": "green", "Diabète": "red"}
-    )
-
-    fig.update_layout(
-        title="Résultat de la prédiction (interactif)",
-        xaxis_title="Classe",
-        yaxis_title="Probabilité",
-        yaxis=dict(range=[0, 1])  # fixe l'échelle à 100%
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
-
+        # Graphique visuel
+        fig, ax = plt.subplots()
+        ax.bar(["Pas de diabète", "Diabète"], [1-probas, probas], color=["green", "red"])
+        st.pyplot(fig)
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
     st.subheader("Analyse des données (exemple sur dataset)")
