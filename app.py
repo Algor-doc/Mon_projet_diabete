@@ -89,16 +89,19 @@ tab1, tab2, tab3, tab4 = st.tabs(["📈 Prédiction", "📊 Analyse exploratoire
 with tab1:
     st.subheader("Résultat de la prédiction")
 
-    if st.button("🔍 Prédire"):
-    prediction = model.predict(features)
-    proba = model.predict_proba(features)[0][1]  # probabilité d'avoir le diabète
+    if st.button("🔍 Lancer la prédiction"):
+        prediction = model.predict(features)
+        probas = model.predict_proba(features)[0][1]
 
-    st.metric(label="Probabilité de diabète", value=f"{proba*100:.2f}%")
+        st.metric(label="Probabilité de diabète", value=f"{probas*100:.2f}%")
 
-    if prediction[0] == 1:
-        st.error("⚠️ Risque élevé de diabète")
-    else:
-        st.success("✅ Pas de risque détecté")
+        # Messages conditionnels
+        if probas > 0.7:
+            st.warning("⚠️ Risque très élevé – consultez un médecin rapidement.")
+        elif probas > 0.4:
+            st.info("ℹ️ Risque modéré – un suivi médical est recommandé.")
+        else:
+            st.success("✅ Pas de risque détecté.")
 
         # Graphique visuel
         fig, ax = plt.subplots()
