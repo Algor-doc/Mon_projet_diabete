@@ -100,7 +100,7 @@ with tab1:
     else:
         st.success("✅ Pas de risque détecté")
 
-    # Graphe interactif Plotly
+       # Graphe interactif Plotly
     fig = go.Figure(go.Bar(
         x=["Pas de diabète", "Diabète"],
         y=[1-proba, proba],
@@ -110,12 +110,14 @@ with tab1:
     ))
 
     fig.update_layout(
-        title="Résultat de la prédiction",
+        title="Résultat interactif de la prédiction",
         yaxis=dict(title="Probabilité"),
-        xaxis=dict(title="Classe")
+        xaxis=dict(title="Classe"),
+        bargap=0.5
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
 
 # --------- Onglet 2 : Analyse exploratoire ---------
 with tab2:
