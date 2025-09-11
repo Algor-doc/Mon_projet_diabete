@@ -48,7 +48,7 @@ polyurie = st.sidebar.selectbox("Polyurie", ["Yes", "No"])
 polydipsie = st.sidebar.selectbox("Polydipsie", ["Yes", "No"])
 perte_poids = st.sidebar.selectbox("Perte de poids", ["Yes", "No"])
 fatigue = st.sidebar.selectbox("Fatigue", ["Yes", "No"])
-Polyphagie =  st.sidebar.selectbox("Polyphagie", ["Yes", "No"])
+polyphagie =  st.sidebar.selectbox("Polyphagie", ["Yes", "No"])
 muguet_génital = st.sidebar.selectbox("muguet génital", ["Yes", "No"])
 vision = st.sidebar.selectbox("Vision trouble", ["Yes", "No"])
 itching = st.sidebar.selectbox("Démangeaisons", ["Yes", "No"])
@@ -56,7 +56,7 @@ irritabilite = st.sidebar.selectbox("Irritabilité", ["Yes", "No"])
 cicatrisation = st.sidebar.selectbox("Retard de cicatrisation", ["Yes", "No"])
 paresthesie = st.sidebar.selectbox("Paresthésie", ["Yes", "No"])
 raideur_musculaire = st.sidebar.selectbox("Raideur_musculaire", ["Yes", "No"])
-Alopecia = st.sidebar.selectbox("Alopécie", ["Yes", "No"])
+alopecia = st.sidebar.selectbox("Alopécie", ["Yes", "No"])
 obesite = st.sidebar.selectbox("Obésité", ["Yes", "No"])
 hypertension = st.sidebar.selectbox("Hypertension", ["Yes", "No"])
 
@@ -71,7 +71,7 @@ features = np.array([[
     mapping[polydipsie],
     mapping[perte_poids],
     mapping[fatigue],
-    mapping[Polyphagie],
+    mapping[polyphagie],
     mapping[muguet_génital]
     mapping[vision],
     mapping[itching],
@@ -79,7 +79,7 @@ features = np.array([[
     mapping[cicatrisation],
     mapping[paresthesie],
     mapping[raideur_musculaire]
-    mapping[Alopecia]
+    mapping[alopecia]
     mapping[obesite],
     mapping[hypertension]
 ]])
