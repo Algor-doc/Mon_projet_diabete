@@ -170,4 +170,3 @@ with tab4:
 
     ⚠️ Remarque : cette application n’est pas un diagnostic médical officiel mais un outil de **sensibilisation** et de **support à la décision**.
     """)
-
