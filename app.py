@@ -3,6 +3,33 @@ import joblib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+
+# Fonction pour ajouter une image de fond
+def add_bg_from_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("");
+             background-attachment: fixed;
+             background-size: cover;
+             background-position: center;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+add_bg_from_url()
+
+# Configuration de la page
+st.set_page_config(
+    page_title="Prédiction du diabète",
+    page_icon="🩺",
+    layout="wide"
+)
 
 # Charger le modèle
 model = joblib.load("model_diabetes.pkl")
@@ -14,7 +41,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["🔍 Prédiction", "📊 Analyse exploratoire
 
 # ----------------- ONGLET 1 : PREDICTION -----------------
 with tab1:
-    st.header("🔍 Prédiction du diabète")
+    st.header("🔍 Lancer la prédiction")
 
     # Sidebar pour les paramètres
     st.sidebar.header("⚙️ Paramètres médicaux")
